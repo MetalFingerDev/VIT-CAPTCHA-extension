@@ -1,0 +1,26 @@
+{
+  "manifest_version": 3,
+  "name": "VIT Auto-CAPTCHA",
+  "version": "1.0",
+  "description": "Automatically fills CAPTCHA on the VIT login page.",
+  "permissions": [
+    "activeTab",
+    "scripting"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://vtop.vitbhopal.ac.in/vtop/login"
+      ],
+      "js": [
+        "content.js"
+      ]
+    }
+  ],
+  "host_permissions": [
+    "http://127.0.0.1:8008/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  }
+}
