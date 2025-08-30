@@ -16,7 +16,7 @@ logging.basicConfig(level=logging.INFO)
 
 def create_app():
     app = Flask(__name__, static_folder='src/static', static_url_path='/static')
-    app.config.from_object(get_config)
+    app.config.from_object(get_config())
     CORS(app, resources={r"/api/*": {"origins": app.config["ALLOWED_ORIGINS"]}})
 
     @app.route("/")
