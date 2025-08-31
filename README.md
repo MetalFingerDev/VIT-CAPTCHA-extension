@@ -9,7 +9,7 @@ An intelligent browser extension that automates the CAPTCHA solving process on t
 - 🚀 **Automated CAPTCHA Solving**: Instantly detects and solves CAPTCHAs, eliminating the need for manual entry.  
 - 🖥 **Local Flask Backend**: A high-performance, local server handles complex machine learning inference.  
 - 🌍 **Multi-Environment Support**: Easily switch between development and production modes with a clear configuration system.  
-- ⚡ **Easy-to-Use**: Simple setup process designed to get you running in minutes.  
+- 🤓 **Easy-to-Use**: Simple setup process designed to get you running in minutes.  
 
 ---
 
@@ -117,13 +117,13 @@ The server's behavior is controlled by environment variables. You can set these 
 - Containerize the backend using Docker  
 - Fine-tune the TrOCR model on a custom dataset of VIT CAPTCHAs  
 
-### 🚀 Mid-term Goals
+### ☑️ Mid-term Goals
 
 - Migrate from Flask's development server to Gunicorn  
 - Add support for Firefox and Edge via WebExtension API  
 - Implement structured logging for API and model performance  
 
-### 🌐 Long-term Goals
+### ✔️ Long-term Goals
 
 - Develop algorithms for distorted/animated CAPTCHAs  
 - Build a dashboard to monitor and manage extension behavior  
