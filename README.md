@@ -1,152 +1,139 @@
-🔐 VIT Auto-CAPTCHA Extension
+# 🔐 VIT Auto-CAPTCHA Extension
 
-Automatically solves and fills CAPTCHA on the VIT Bhopal login page using a Chrome Extension + Flask backend powered by a pretrained OCR model.
+An intelligent browser extension that automates the CAPTCHA solving process on the VIT login page. It leverages a secure, local Flask backend powered by a fine-tuned machine learning model to provide a seamless login experience.
 
-📌 Features
+---
 
-Injects directly into the VIT login page.
+## ✨ Key Features
 
-Detects and captures CAPTCHA images automatically.
+- 🚀 **Automated CAPTCHA Solving**: Instantly detects and solves CAPTCHAs, eliminating the need for manual entry.  
+- 🖥 **Local Flask Backend**: A high-performance, local server handles complex machine learning inference.  
+- 🌍 **Multi-Environment Support**: Easily switch between development and production modes with a clear configuration system.  
+- ⚡ **Easy-to-Use**: Simple setup process designed to get you running in minutes.  
 
-Sends CAPTCHA to a local Flask backend.
+---
 
-Backend uses a Hugging Face OCR model (anuashok/ocr-captcha-v3) to solve it.
+## 🛠 Tech Stack
 
-Auto-fills solution in the login form.
+| Component | Technology       | Description                                                        |
+|----------|------------------|--------------------------------------------------------------------|
+| Client   | Browser Extension | Built with JavaScript, HTML, and CSS for a lightweight, native feel. |
+| Server   | Flask             | A Python micro-framework for the backend API.                     |
+| Model    | TrOCR             | A Transformer-based model from Hugging Face for Optical Character Recognition (OCR). |
 
-Watches for CAPTCHA refreshes and re-solves instantly.
+---
 
-📂 Repository Structure
-.
-├── app.py              # Flask backend entrypoint
-├── test.py             # Local test script for model
-├── requirements.txt    # Python dependencies
-├── manifest.json       # Chrome extension manifest (v3)
-├── background.js       # Background script (handles API calls)
-├── content.js          # Content script (runs inside login page)
-├── src/
-│   ├── config.py       # Flask configuration (dev/prod)
-│   ├── model.py        # OCR model (TrOCR) logic
-│   ├── static/
-│   │   └── image.png   # Sample CAPTCHA for testing
+## ⚙️ Installation
 
-🔄 How It Works
-Frontend (Chrome Extension)
+1. **Clone the repository**  
+   ```bash
+   git clone https://github.com/MetalFingerDev/VIT-CAPTCHA-extention.git
+   cd VIT-CAPTCHA-extention
+   ```
 
-manifest.json → Defines permissions and injects content.js only on the VIT login page.
+2. **Start the Flask Server**  
+   Run the appropriate script for your operating system to set up the Python environment and start the Flask server.
 
-content.js →
+   - **Windows**:  
+     ```bash
+     start_server.bat
+     ```
 
-Waits for CAPTCHA image + input field.
+   - **macOS / Linux**:  
+     ```bash
+     bash start_server.sh
+     ```
 
-Captures image (base64).
+3. **Load the Extension**  
+   - Open your browser's extensions page (`chrome://extensions/`)  
+   - Enable Developer Mode in the top-right corner  
+   - Click **Load unpacked** and select the `extension/` directory from the cloned repository  
 
-Sends it to background.js.
+---
 
-Fills returned solution into input.
+## 📡 API Reference
 
-Uses MutationObserver to detect and re-solve refreshed CAPTCHAs.
+Our backend exposes a single, simple API endpoint to handle the CAPTCHA solving.
 
-background.js →
+### 🔹 Solve CAPTCHA
 
-Receives image data from content.js.
+**POST** `/api/solve`
 
-Sends POST request to Flask backend (/api/solve).
+**Request Body**:
+```json
+{
+  "image": "base64-encoded CAPTCHA image"
+}
+```
 
-Returns solution to content.js.
+**Success Response**:
+```json
+{
+  "solution": "SOLVEDTEXT"
+}
+```
 
-Backend (Flask + Model)
+**Error Response**:
+```json
+{
+  "error": "Reason for failure"
+}
+```
 
-app.py →
+---
 
-Runs Flask server (http://127.0.0.1:8008).
+## 🌐 Environment Configuration
 
-Defines /api/solve endpoint to accept base64 image.
+The server's behavior is controlled by environment variables. You can set these in a `.env` file in the root directory.
 
-Calls solve_captcha() from model.py.
+| Variable         | Description                                      | Example                                           |
+|------------------|--------------------------------------------------|---------------------------------------------------|
+| `FLASK_ENV`      | Sets the environment (development or production) | `development`                                     |
+| `ALLOWED_ORIGINS`| Comma-separated list of permitted request origins| `http://localhost:3000 |
 
-Returns solution JSON.
+---
 
-config.py → Handles environment configs (dev vs production).
+## 🎥 Demo
 
-model.py →
+[▶️ WATCH ME](WATCHME.mp4), a live demonstration of the extension in action.  
+>This video shows the automatic CAPTCHA solving process in real time.
 
-Loads pretrained Hugging Face OCR model (anuashok/ocr-captcha-v3).
+![CAPTCHA GIF](src/static/demo.gif)
+> This GIF shows the automatic CAPTCHA solving process in real time.
 
-Converts image → tensor → text.
+---
 
-Returns solved CAPTCHA string.
+## 🗺 Roadmap
 
-test.py → Run locally to check model predictions before using extension.
+### ✅ Short-term Goals
 
-⚙️ Installation
-1. Backend Setup
-git clone <this-repo>
-cd <repo>
-python -m venv venv
-source venv/bin/activate   # On Windows: venv\Scripts\activate
-pip install -r requirements.txt
+- Implement a proper testing framework (`pytest`) for the backend API  
+- Refactor the extension to use a secure messaging channel between `content.js` and `background.js`  
+- Containerize the backend using Docker  
+- Fine-tune the TrOCR model on a custom dataset of VIT CAPTCHAs  
 
+### 🚀 Mid-term Goals
 
-Run Flask server:
+- Migrate from Flask's development server to Gunicorn  
+- Add support for Firefox and Edge via WebExtension API  
+- Implement structured logging for API and model performance  
 
-python app.py
+### 🌐 Long-term Goals
 
+- Develop algorithms for distorted/animated CAPTCHAs  
+- Build a dashboard to monitor and manage extension behavior  
+- Explore a plugin ecosystem for community CAPTCHA contributions  
 
-By default → runs at: http://127.0.0.1:8008
+---
 
-2. Extension Setup
+## ✍️ Author
 
-Open Chrome → chrome://extensions/.
+[@MetalFingerDev](https://github.com/MetalFingerDev)
 
-Enable Developer Mode.
+---
 
-Click Load Unpacked → select repo folder.
+## 🏷 References
 
-Navigate to VIT Login
-.
-
-CAPTCHA should auto-solve 🎉
-
-🛠️ Tech Stack
-
-Frontend: Chrome Extension (Manifest v3, JS).
-
-Backend: Flask, Hugging Face Transformers, PyTorch.
-
-Model: anuashok/ocr-captcha-v3
-.
-
-📊 Data Flow
-sequenceDiagram
-    participant User
-    participant ContentJS
-    participant BackgroundJS
-    participant FlaskAPI
-    participant Model
-
-    User->>ContentJS: Open VIT Login Page
-    ContentJS->>BackgroundJS: Send CAPTCHA (base64)
-    BackgroundJS->>FlaskAPI: POST /api/solve { image }
-    FlaskAPI->>Model: solve_captcha(image)
-    Model-->>FlaskAPI: "ZLNQ52"
-    FlaskAPI-->>BackgroundJS: { solution: "ZLNQ52" }
-    BackgroundJS-->>ContentJS: Return solution
-    ContentJS->>User: Autofills CAPTCHA input
-
-🧪 Testing the Model
-
-Run locally without extension:
-
-python test.py
-
-
-Output:
-
-Solution from model: ZLNQ52
-
-⚠️ Disclaimer
-
-This project is for educational purposes only.
-
-Use responsibly and ensure compliance with institutional policies.
+[![TrOCR Model by anuashok](https://img.shields.io/badge/Model-TrOCR-blueviolet?style=for-the-badge&logo=huggingface)](https://huggingface.co/anuashok/ocr-captcha-v3)
+[![Flask](https://img.shields.io/badge/Backend-Flask-lightgrey?style=for-the-badge&logo=flask)](https://flask.palletsprojects.com/)
+[![Hugging Face](https://img.shields.io/badge/AI%20Platform-Hugging%20Face-yellow?style=for-the-badge&logo=huggingface)](https://huggingface.co/)
