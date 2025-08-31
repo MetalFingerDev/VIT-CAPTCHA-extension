@@ -27,8 +27,8 @@ An intelligent browser extension that automates the CAPTCHA solving process on t
 
 1. **Clone the repository**  
    ```bash
-   git clone https://github.com/MetalFingerDev/VIT-CAPTCHA-extention.git
-   cd VIT-CAPTCHA-extention
+   git clone https://github.com/MetalFingerDev/VIT-CAPTCHA-extension.git
+   cd VIT-CAPTCHA-extension
    ```
 
 2. **Start the Flask Server**  
