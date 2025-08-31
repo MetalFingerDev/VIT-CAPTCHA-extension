@@ -89,7 +89,7 @@ The server's behavior is controlled by environment variables. You can set these 
 | Variable         | Description                                      | Example                                           |
 |------------------|--------------------------------------------------|---------------------------------------------------|
 | `FLASK_ENV`      | Sets the environment (development or production) | `development`                                     |
-| `ALLOWED_ORIGINS`| Comma-separated list of permitted request origins| `http://localhost:3000 |
+| `ALLOWED_ORIGINS`| Comma-separated list of permitted request origins| `http://localhost:3000` |
 
 ---
 
