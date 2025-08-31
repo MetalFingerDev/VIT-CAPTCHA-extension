@@ -27,11 +27,11 @@ An intelligent browser extension that automates the CAPTCHA solving process on t
 
 1. **Clone the repository**
 
-  *first*
+  *first...*
    ```bash
    git clone https://github.com/MetalFingerDev/VIT-CAPTCHA-extension.git
    ```
-  *after everthing gets installs*
+  *...then after everthing gets installed*
    ```bash
    cd VIT-CAPTCHA-extension
    ```
